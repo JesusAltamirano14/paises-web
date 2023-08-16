@@ -1,27 +1,38 @@
 import './App.css'
+import { useEffect, useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 
 
 
 function App() {
 
-  const getContinents = gql`
+  const [continents,setContinents] = useState([]);
+
+  const GET_CODE_CONTINENTS = gql`
   query{
-    country(code:"PE"){
+    continents{
       code
-      currencies
-      phones
+      name
     }
   }
   `
-  const { data } = useQuery(getContinents);
+  const getContinents = useQuery(GET_CODE_CONTINENTS);
+  useEffect(()=>{
 
-  console.log(data);
+    if(getContinents.data){
+      setContinents(getContinents.data.continents);
+    }
+
+  },[getContinents.data])
 
   return (
     <>
       <div className='bg-red-500 text-white'>
-        Jesus Altamirano
+        {getContinents.loading?<div>loading ... </div>:(
+          <>
+          {continents.map((continent)=>(<div key={continent.code}>{continent.code}</div>))}
+          </>
+        )}
       </div>
     </>
   )

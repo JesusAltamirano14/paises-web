@@ -1,40 +1,24 @@
+import { Routes,Route,BrowserRouter } from 'react-router-dom'
 import './App.css'
-import { useEffect, useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
-
-
-
+import Home from './pages/Home'
+import Favorite from './pages/Favorite'
+import SideBar from './sidebar'
 function App() {
 
-  const [continents,setContinents] = useState([]);
-
-  const GET_CODE_CONTINENTS = gql`
-  query{
-    continents{
-      code
-      name
-    }
-  }
-  `
-  const getContinents = useQuery(GET_CODE_CONTINENTS);
-  useEffect(()=>{
-
-    if(getContinents.data){
-      setContinents(getContinents.data.continents);
-    }
-
-  },[getContinents.data])
-
   return (
-    <>
-      <div className='bg-red-500 text-white'>
-        {getContinents.loading?<div>loading ... </div>:(
-          <>
-          {continents.map((continent)=>(<div key={continent.code}>{continent.code}</div>))}
-          </>
-        )}
+    <BrowserRouter>
+    <div className='flex justify-start w-screen h-screen'>
+      <div className='w-3/12 h-screen lg:w-2/12'>
+        <SideBar/>
       </div>
-    </>
+      <div className='w-9/12 h-screen lg:w-10/12'>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path='/favorite' element={<Favorite/>}/>
+        </Routes>
+      </div>
+    </div>
+    </BrowserRouter>
   )
 }
 

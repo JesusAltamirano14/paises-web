@@ -85,7 +85,7 @@ function Home() {
         setCountriesPerSearch(data.countries);
     }
 
-  },[codeContinentFilter,getContinents.data,data]);
+  },[codeContinentFilter,getContinents.data,data,getFilteredCountries]);
 
 
   const handleSearchButton = () => {

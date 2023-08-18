@@ -56,7 +56,7 @@ const CartCountry = ({name,code,emoji}) => {
         }
         if(reactQueryImagenCountry.data) setImagen(reactQueryImagenCountry.data.hits[0].webformatURL)
         
-    },[data])
+    },[data,reactQueryImagenCountry.data])
 
   return (
     <>

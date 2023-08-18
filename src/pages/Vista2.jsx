@@ -1,7 +1,7 @@
 
 const Vista2 = () => {
   return (
-    <div>Vista2</div>
+    <div className="m-5 text-2xl">Vista 2</div>
   )
 }
 

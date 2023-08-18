@@ -9,9 +9,8 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 
 
 const fetchApi = async (name) => {
-    const apiKeyUnsplash = import.meta.env.VITE_API_KEY_UNSPLASH;
-    console.log(apiKeyUnsplash)
-    const responseFetch = await fetch(`https://pixabay.com/api/?key=17217991-03f3bbc33ce003fdc6e333bba&q=${name}`);
+    const apiKeyPixabay = import.meta.env.VITE_API_KEY_PIXABAY;
+    const responseFetch = await fetch(`https://pixabay.com/api/?key=${apiKeyPixabay}&q=${name}`);
     const response = await responseFetch.json();
     return response
 }

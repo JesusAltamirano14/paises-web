@@ -2,9 +2,7 @@
 const Favorite = () => {
 
   return (
-    <div>
-      Vista1
-    </div>
+    <div className="m-5 text-2xl">Vista 1</div>
   )
 }
 

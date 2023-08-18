@@ -93,18 +93,31 @@ function Home() {
     setCountriesPerSearch(newArray);
     setInputIsClicked(false);
   }
+  const handleClearSearch = () => {
+    const newArray = allCountries.filter(countrie=>countrie.name.toUpperCase().includes(''));
+    setCountriesPerSearch(newArray);
+    setInputIsClicked(false);
+    setSearchWord('')
+  }
 
   return (
     <div className='bg-blue-100 h-screen flex flex-col items-start justify-start gap-2 md:gap-6 pt-2'>
-        <div onClick={()=>setInputIsClicked(true)} className='flex justify-center w-full'>
-            <div className="flex flex-wrap md:flex-nowrap gap-4 relative lg:w-8/12">
+        <div onClick={()=>setInputIsClicked(true)} className='flex justify-center w-full p-2'>
+            <div className="flex flex-wrap md:flex-nowrap gap-4 relative lg:w-8/12 w-full">
                 <Input type="text" label="Pais" onKeyUp={(e)=>{e.key==='Enter'?handleSearchButton():null}}
                 ref={inputRef}
+                value={searchWord}
                 onChange={(e)=>{setSearchWord(e.target.value)}}
                 endContent={
+                    <>
+                    {searchWord?
+                    <Button variant='light' className='p-0' isIconOnly size='sm' onClick={handleClearSearch}>
+                        <AiOutlineClose className='w-4 h-4'/>
+                    </Button>:null}
                     <Button color='primary' className='p-0 md:p-2' endContent={<AiOutlineSearch className='w-4 h-4 md:w-6 md:h-6'/>} onClick={handleSearchButton}>
                         <h1 className='text-xs md:text-base'>Buscar</h1>
                     </Button>
+                    </>
                 }/>
                 {inputIsClicked?
                 <Filtros 

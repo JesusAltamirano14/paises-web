@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  font-family: 'Nunito Sans', sans-serif;
+
+}
+
 
 .always-scroll::-webkit-scrollbar {
   width: 10px; /* Ancho del scroll */

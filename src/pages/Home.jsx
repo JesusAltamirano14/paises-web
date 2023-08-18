@@ -95,15 +95,15 @@ function Home() {
   }
 
   return (
-    <div className='bg-blue-100 h-screen flex flex-col items-start justify-start gap-2'>
+    <div className='bg-blue-100 h-screen flex flex-col items-start justify-start gap-2 md:gap-6 pt-2'>
         <div onClick={()=>setInputIsClicked(true)} className='flex justify-center w-full'>
             <div className="flex flex-wrap md:flex-nowrap gap-4 relative lg:w-8/12">
                 <Input type="text" label="Pais" onKeyUp={(e)=>{e.key==='Enter'?handleSearchButton():null}}
                 ref={inputRef}
                 onChange={(e)=>{setSearchWord(e.target.value)}}
                 endContent={
-                    <Button color='primary' endContent={<AiOutlineSearch className='w-7 h-7'/>} onClick={handleSearchButton}>
-                        Buscar
+                    <Button color='primary' className='p-0 md:p-2' endContent={<AiOutlineSearch className='w-4 h-4 md:w-6 md:h-6'/>} onClick={handleSearchButton}>
+                        <h1 className='text-xs md:text-base'>Buscar</h1>
                     </Button>
                 }/>
                 {inputIsClicked?
@@ -116,7 +116,7 @@ function Home() {
                 :null}
             </div>
         </div>
-        <div className='w-full flex flex-col justify-center items-center gap-2 md:gap-4'>
+        <div className='w-full flex flex-col justify-center items-center gap-4 md:gap-6'>
             <div className='grid grid-cols-2 gap-2 justify-normal w-11/12 items-start md:gap-4 md:grid-cols-3 lg:grid-cols-4 '>
                 {!loading?
                 currentPosts?.map(countrie=>(<CartCountry name={countrie.name} code={countrie.code} emoji={countrie.emoji} key={countrie.name}/>))
@@ -142,7 +142,7 @@ function Home() {
                 )}
             </div>
             <div className='w-11/12 flex'>
-                <Pagination size={'sm'} total={numberOfPages} initialPage={1} onChange={(page)=>{setCurrentPage(page)}}/>
+                <Pagination size={'md'} total={numberOfPages} initialPage={1} onChange={(page)=>{setCurrentPage(page)}}/>
             </div>
         </div>
     </div>

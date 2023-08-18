@@ -2,27 +2,30 @@
 import { useEffect,useState } from "react"
 import { useQuery,gql } from "@apollo/client";
 import {useQuery as useQueryReact} from "@tanstack/react-query"
+// import america from '../continentes/sudamerica.png'
+import { Image } from "@nextui-org/react";
 
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 
 
-// const fetchApi = async (name) => {
-//     const apiKeyUnsplash = import.meta.env.VITE_API_KEY_UNSPLASH;
-//     console.log(apiKeyUnsplash)
-//     const responseFetch = await fetch(`https://pixabay.com/api/?key=17217991-03f3bbc33ce003fdc6e333bba&q=${name}`);
-//     const response = await responseFetch.json();
-//     return response
-// }
+const fetchApi = async (name) => {
+    const apiKeyUnsplash = import.meta.env.VITE_API_KEY_UNSPLASH;
+    console.log(apiKeyUnsplash)
+    const responseFetch = await fetch(`https://pixabay.com/api/?key=17217991-03f3bbc33ce003fdc6e333bba&q=${name}`);
+    const response = await responseFetch.json();
+    return response
+}
 
 const CartCountry = ({name,code,emoji}) => {
 
+    // next-ui - funcionamiento de modal
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     const [imagen,setImagen] = useState(null);
     const [continent,setContinent] = useState('');
     const [country,setCountry] = useState({});
-    const GET_CONTINENT = gql`
-        query getContinet($code:ID!){
+    const GET_INFO_COUNTRY = gql`
+        query getInfoCountry($code:ID!){
             country(code:$code){
                 name
                 capital
@@ -39,34 +42,33 @@ const CartCountry = ({name,code,emoji}) => {
             }
         }
     `
-    const {data} = useQuery(GET_CONTINENT,{variables:{code}});
+    const {data} = useQuery(GET_INFO_COUNTRY,{variables:{code}});
 
-    // const reactQueryImagenCountry = useQueryReact({
-    //     queryKey:[`${code}`],
-    //     queryFn: () => fetchApi(name)
-    // });
+    const reactQueryImagenCountry = useQueryReact({
+        queryKey:[`${code}`],
+        queryFn: () => fetchApi(name)
+    });
 
 
     useEffect(()=>{
         if(data) {
             setContinent(data.country.continent.name);
             setCountry(data.country);
-            console.log(data);
         }
-        // if(reactQueryImagenCountry.data) setImagen(reactQueryImagenCountry.data.hits[0].previewURL)
+        if(reactQueryImagenCountry.data) setImagen(reactQueryImagenCountry.data.hits[0].webformatURL)
         
     },[data])
 
   return (
     <>
-    <Button className="h-[133px] p-0 flex justify-start items-start bg-white rounded-3xl overflow-hidden  lg:h-60 shadow-lg" 
+    <Button className="h-[133px] p-0 flex justify-start items-start bg-white rounded-3xl overflow-hidden lg:h-60 shadow-lg" 
     onPress={onOpen}
     endContent={
         <div className="w-full">
-            <img src={imagen} alt="" className="h-24 w-full lg:h-48"/>
+            <Image isZoomed alt="limit api images exceeded" src={imagen} isBlurred width={500} className="h-24 lg:h-48"/>
             <div className="flex justify-center gap-2">
                 <h1 className="text-2xl md:text-5xl">{emoji}</h1>
-                <span className="flex flex-col text-xs">
+                <span className="flex flex-col text-xs md:text-base">
                     <h1 className="text-blue-400 font-semibold">{name.length>12?name.slice(0,12)+'...':name}</h1>
                     <h1 className="text-black" >{continent}</h1>
                 </span>
@@ -81,7 +83,7 @@ const CartCountry = ({name,code,emoji}) => {
         <>
           <ModalHeader className="flex flex-col gap-1">
             <div className="flex flex-col gap-4">
-                <img src={imagen} className="rounded-md"/>
+                <Image width={500} src={imagen} className="rounded-md"/>
                 <section className="flex items-center gap-4">
                     <h1 className="text-7xl">{emoji}</h1>
                     <div>

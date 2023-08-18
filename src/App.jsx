@@ -3,6 +3,7 @@ import './App.css'
 import Home from './pages/Home'
 import Favorite from './pages/Favorite'
 import SideBar from './sidebar'
+import Vista2 from './pages/Vista2'
 function App() {
 
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path='/favorite' element={<Favorite/>}/>
+          <Route path='/vista' element={<Vista2/>}/>
         </Routes>
       </div>
     </div>

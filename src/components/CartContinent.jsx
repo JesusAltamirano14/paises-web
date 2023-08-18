@@ -7,6 +7,7 @@ import europa from "../continentes/europa.png"
 import norteamerica from "../continentes/norteamerica.png"
 import oceania from "../continentes/oceania.png"
 import sudamerica from "../continentes/sudamerica.png"
+import { Image } from "@nextui-org/react";
 
 
 // const fetchApi = async (name) => {
@@ -52,7 +53,7 @@ const CartContinent = ({name,code,setCodeContinentFilter,codeContinentFilter}) =
     onClick={handleClickChangeCode}
     startContent={
     <div className={`w-full flex flex-col items-start gap-2`}>
-        <img src={imagenEncontrada} alt="" className="h-20 md:h-24 w-full rounded-lg"/>
+        <Image src={imagenEncontrada} isBlurred isZoomed width={200} alt={`${name}`} radius="md" className="h-20 md:h-24 "/>
         <h1 className={`text-xs md:text-md ${code===codeContinentFilter?'text-white':'text-slate-600'}`}>{name}</h1>
     </div>}
     />

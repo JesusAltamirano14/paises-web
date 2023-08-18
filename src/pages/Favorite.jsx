@@ -1,7 +1,10 @@
 
 const Favorite = () => {
+
   return (
-    <div>Favorite</div>
+    <div>
+      Vista1
+    </div>
   )
 }
 

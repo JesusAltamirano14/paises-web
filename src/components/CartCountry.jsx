@@ -93,19 +93,19 @@ const CartCountry = ({name,code,emoji}) => {
           </ModalHeader>
           <ModalBody>
           <span className="text-xs flex gap-4 md:text-base">
-                <h1 className="font-semibol text-blue-400">Capital:</h1>
+                <h1 className="font-semibold text-blue-400">Capital:</h1>
                 <h2>{country.capital?country.capital:'no hay informacion'}</h2>
             </span>
             <span className="text-xs flex gap-4 md:text-base">
-                <h1 className="font-semibol text-blue-400">Language:</h1>
+                <h1 className="font-semibold text-blue-400">Language:</h1>
                 <h2>{country.languages&&country.languages.length>0&&country.languages[0]&&country.languages[0].name?country.languages[0].name:'no hay informacion'}</h2>
             </span>
             <span className="text-xs flex gap-4 md:text-base">
-                <h1 className="font-semibol text-blue-400">Currency:</h1>
+                <h1 className="font-semibold text-blue-400">Currency:</h1>
                 <h2>{country.currency?country.currency:'no hay informacion'}</h2>
             </span>
             <span className="text-xs flex flex-col gap-4 md:text-base">
-                <h1 className="font-semibol text-blue-400">Region:</h1>
+                <h1 className="font-semibold text-blue-400">Region:</h1>
                 <div className=" h-32 shadow-lg overflow-y-scroll always-scroll p-4">
                     {country.states&&country.states.length>0?country.states?.map((state,index)=>(<h1 className="text-slate-500" key={state.name+index.toString()}>{state.name}</h1>)):'no hay informacion'}
                 </div>

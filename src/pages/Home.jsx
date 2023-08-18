@@ -43,7 +43,7 @@ function Home() {
     const [currentPage,setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
-    const numberOfPages = Math.ceil(allCountries.length/postsPerPage);
+    const numberOfPages = Math.ceil(countriesPerSearch.length/postsPerPage);
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = countriesPerSearch.slice(firstPostIndex,lastPostIndex);

@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Button } from "@nextui-org/react";
-import { useEffect,useState } from "react"
-import {useQuery} from '@tanstack/react-query';
 import africa from "../continentes/africa.png"
 import antarctica from "../continentes/antarctica.png"
 import asia from "../continentes/asia.png"
@@ -39,10 +37,6 @@ const CartContinent = ({name,code,setCodeContinentFilter,codeContinentFilter}) =
     // )
     const imagenEncontrada = imagenes.find(img => img.code === code).imagen;
 
-    useEffect(() => {
-        // Actualiza la imagen en función del código actual
-    }, []);
-
     const handleClickChangeCode = () => {
         if(code===codeContinentFilter){
             setCodeContinentFilter('')
@@ -54,7 +48,7 @@ const CartContinent = ({name,code,setCodeContinentFilter,codeContinentFilter}) =
 
   return (
     <Button color="primary" variant={code===codeContinentFilter?"solid":"light"} 
-    className="min-w-[120px] h-28 p-0 flex justify-start items-start m-0 rounded-lg overflow-hidden md:min-w-[200px] md:h-32"
+    className={`min-w-[120px] h-28 p-0 flex justify-start items-start m-0 rounded-lg overflow-hidden md:min-w-[200px] md:h-32 ${code===codeContinentFilter?'border-2 border-blue-500':''}`}
     onClick={handleClickChangeCode}
     startContent={
     <div className={`w-full flex flex-col items-start gap-2`}>
